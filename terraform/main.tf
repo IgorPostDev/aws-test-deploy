@@ -67,10 +67,10 @@ resource "aws_security_group" "app_sg" {
 }
 
 resource "aws_instance" "app" {
-  ami                    = "ami-01b799c439fd5516a"
-  instance_type          = "t2.micro"
+  ami                    = "ami-0c55b159cbfafe1f0"
+  instance_type          = "t3.micro"
   subnet_id              = aws_subnet.subnet1.id
-  security_groups        = [aws_security_group.app_sg.name]
+  security_groups        = [aws_security_group.app_sg.id]
   associate_public_ip_address = true
 
   tags = {
@@ -84,7 +84,7 @@ resource "aws_instance" "app" {
 }
 
 resource "aws_db_subnet_group" "main" {
-  name       = "main"
+  name       = "main-${random_string.suffix.result}"
   subnet_ids = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
 }
 
@@ -116,3 +116,4 @@ variable "instance_type" {
 variable "aws_account_id" {
   type = string
 }
+
