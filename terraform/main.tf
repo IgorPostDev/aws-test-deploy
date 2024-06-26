@@ -67,7 +67,7 @@ resource "aws_security_group" "app_sg" {
 }
 
 resource "aws_instance" "app" {
-  ami                    = "ami-01b1be742d950fb7f"
+  ami                    = "ami-01b799c439fd5516a"
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.subnet1.id
   security_groups        = [aws_security_group.app_sg.name]
@@ -113,4 +113,3 @@ variable "aws_region" {
 variable "aws_account_id" {
   type = string
 }
-
