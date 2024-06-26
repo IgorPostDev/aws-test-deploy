@@ -67,8 +67,8 @@ resource "aws_security_group" "app_sg" {
 }
 
 resource "aws_instance" "app" {
-  ami                    = var.ami
-  instance_type          = var.instance_type
+  ami                    = ami-01b1be742d950fb7f
+  instance_type          = t3.micro
   subnet_id              = aws_subnet.subnet1.id
   security_groups        = [aws_security_group.app_sg.name]
   associate_public_ip_address = true
@@ -92,8 +92,8 @@ resource "aws_db_instance" "db" {
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
-  engine_version       = "8.0"
-  instance_class       = "db.t2.micro"
+  engine_version       = "8.0.34"
+  instance_class       = "db.t3.micro"
   username             = "admin"
   password             = "password"
   db_subnet_group_name = aws_db_subnet_group.main.name
