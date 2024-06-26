@@ -75,7 +75,7 @@ resource "aws_db_subnet_group" "main" {
 }
 
 resource "aws_instance" "app" {
-  ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI (HVM)
+  ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2
   instance_type = "t2.micro"
 
   user_data = <<-EOF
