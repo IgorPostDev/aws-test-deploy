@@ -84,7 +84,6 @@ resource "aws_instance" "app" {
 }
 
 resource "aws_db_subnet_group" "main" {
-  name       = "main-${random_string.suffix.result}"
   subnet_ids = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
 }
 
@@ -105,7 +104,6 @@ resource "random_string" "suffix" {
   length  = 6
   special = true
 }
-
 
 variable "aws_region" {
   default = "us-east-1"
