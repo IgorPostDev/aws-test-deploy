@@ -67,8 +67,8 @@ resource "aws_security_group" "app_sg" {
 }
 
 resource "aws_instance" "app" {
-  ami                    = "ami-01b1be742d950fb7f"
-  instance_type          = "t3.micro"
+  ami                    = "ami-01b799c439fd5516a"
+  instance_type          = "t2.micro"
   subnet_id              = aws_subnet.subnet1.id
   security_groups        = [aws_security_group.app_sg.name]
   associate_public_ip_address = true
@@ -88,7 +88,7 @@ resource "aws_db_subnet_group" "main" {
   subnet_ids = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
 }
 
-resource "aws_db_instance" "db" {
+resource "aws_db_instance_test" "db" {
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
@@ -106,11 +106,11 @@ variable "aws_region" {
 }
 
 variable "ami" {
-  default = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI
+  default = "ami-01b799c439fd5516a"
 }
 
 variable "instance_type" {
-  default = "t3.micro"
+  default = "t2.micro"
 }
 
 variable "aws_account_id" {
