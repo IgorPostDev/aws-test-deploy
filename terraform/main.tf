@@ -67,10 +67,10 @@ resource "aws_security_group" "app_sg" {
 }
 
 resource "aws_instance" "app" {
-  ami                    = "ami-0c55b159cbfafe1f0"
-  instance_type          = "t3.micro"
+  ami                    = "ami-01b1be742d950fb7f"
+  instance_type          = "t2.micro"
   subnet_id              = aws_subnet.subnet1.id
-  security_groups        = [aws_security_group.app_sg.id]
+  security_groups        = [aws_security_group.app_sg.name]
   associate_public_ip_address = true
 
   tags = {
@@ -101,19 +101,15 @@ resource "aws_db_instance" "db" {
   skip_final_snapshot  = true
 }
 
+resource "random_string" "suffix" {
+  length  = 6
+  special = false
+}
+
 variable "aws_region" {
   default = "us-east-1"
-}
-
-variable "ami" {
-  default = "ami-01b799c439fd5516a"
-}
-
-variable "instance_type" {
-  default = "t2.micro"
 }
 
 variable "aws_account_id" {
   type = string
 }
-
