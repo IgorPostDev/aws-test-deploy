@@ -103,8 +103,9 @@ resource "aws_db_instance" "db" {
 
 resource "random_string" "suffix" {
   length  = 6
-  special = false
+  special = true
 }
+
 
 variable "aws_region" {
   default = "us-east-1"
